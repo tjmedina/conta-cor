@@ -1,0 +1,45 @@
+{
+  "resolucion_captura": [800, 600],
+  "cantidad_areas": 5,
+  "ancho_area": 70,
+  "alto_area": 135,
+  "posiciones_areas": [[50, 170], [130, 170], [210, 170], [290, 170], [370, 170]],
+  "rango_colores": {
+    "RED": {
+      "hue": [0, 10],
+      "saturation": [100, 255],
+      "value": [100, 255]
+    },
+    "ORANGE": {
+      "hue": [11, 25],
+      "saturation": [100, 255],
+      "value": [100, 255]
+    },
+    "YELLOW": {
+      "hue": [26, 35],
+      "saturation": [100, 255],
+      "value": [100, 255]
+    },
+    "GREEN": {
+      "hue": [36, 80],
+      "saturation": [100, 255],
+      "value": [100, 255]
+    },
+    "BLUE": {
+      "hue": [97, 130],
+      "saturation": [40, 255],
+      "value": [140, 255]
+    },
+    "VIOLET": {
+      "hue": [131, 160],
+      "saturation": [100, 255],
+      "value": [100, 255]
+    },
+    "PINK": {
+      "hue": [174, 184],
+      "saturation": [75, 255],
+      "value": [109, 255]
+    }
+  },
+  "tiempo_desaparicion": 0.25
+}
