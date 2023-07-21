@@ -5,6 +5,8 @@ import time
 font = cv2.FONT_HERSHEY_SIMPLEX
 
 # Función para dibujar contornos y calcular centroides dentro del ROI
+
+
 def dibujar(frame, mask, color, roi_vertices):
     contornos, _ = cv2.findContours(
         mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -31,10 +33,14 @@ def dibujar(frame, mask, color, roi_vertices):
     return centroids_in_roi
 
 # Función vacía para la creación de trackbars
+
+
 def empty(a):
     pass
 
 # Función para ajustar el rango de color mediante trackbars
+
+
 def configurar_rango_color():
     cv2.namedWindow("HSV")
     cv2.resizeWindow("HSV", 640, 240)
@@ -52,11 +58,13 @@ def main():
 
     # Configuración de la cámara
     cam = 4
+    codec = 0x47504A4D  # MJPG
     width, height = 640, 480
     fps = 60
     brightness, contrast, saturation = 55, 130, 112
 
     cap = cv2.VideoCapture(cam)
+    cap.set(cv2.CAP_PROP_FOURCC, codec)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
     cap.set(cv2.CAP_PROP_FPS, fps)
@@ -93,17 +101,15 @@ def main():
     while True:
         ret, frame = cap.read()
 
-
-
         # Verificar si se capturó correctamente un cuadro
         if not ret:
             break
 
-        fc+=1
+        fc += 1
 
         TIME = time.time() - start_time
 
-        if (TIME) >= display_time :
+        if (TIME) >= display_time:
             p_fps = fc / (TIME)
             fc = 0
             start_time = time.time()
@@ -112,7 +118,7 @@ def main():
 
         # Add contador de frames
         frame = cv2.putText(frame, fps_disp, (15, 465),
-        font, 0.7, (0, 0, 0), 2)
+                            font, 0.7, (0, 0, 0), 2)
 
         frameHsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
@@ -146,8 +152,6 @@ def main():
         cv2.circle(frame, (30, 72), 15, (0, 255, 255), -1)
         cv2.circle(frame, (30, 112), 15, (0, 0, 255), -1)
 
-
-
         # Update counters based on the number of detected objects within ROI
         blue_detected = len(centroids_azul)
         yellow_detected = len(centroids_amarillo)
@@ -177,9 +181,13 @@ def main():
         result = cv2.bitwise_and(frame, frame, mask=mask)
 
         mask = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
-        #hStack = np.hstack([frame])
-        hStack = np.hstack([frame, mask, result])
-        cv2.imshow('Horizontal Stacking', hStack)
+        # hStack = np.hstack([frame])
+        #hStack = np.hstack([frame, mask, result])
+        cv2.imshow('Original', frame)
+        #cv2.imshow('HSV Color Space', frameHsv)
+        cv2.imshow('Mask', mask)
+        cv2.imshow('Result', result)
+        #cv2.imshow('Horizontal Stacking', hStack)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
@@ -187,6 +195,7 @@ def main():
     # Liberar la cámara y cerrar todas las ventanas de OpenCV al finalizar
     cap.release()
     cv2.destroyAllWindows()
+
 
 if __name__ == "__main__":
     main()
