@@ -2,10 +2,7 @@ import cv2
 import numpy as np
 import time
 
-
 font = cv2.FONT_HERSHEY_SIMPLEX
-
-
 
 # Función para dibujar contornos y calcular centroides dentro del ROI
 def dibujar(frame, mask, color, roi_vertices):
