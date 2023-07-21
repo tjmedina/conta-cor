@@ -179,10 +179,6 @@ def main():
         mask = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
         #hStack = np.hstack([frame])
         hStack = np.hstack([frame, mask, result])
-        # cv2.imshow('Original', frame)
-        # cv2.imshow('HSV Color Space', iframeHsv)
-        # cv2.imshow('Mask', mask)
-        # cv2.imshow('Result', result)
         cv2.imshow('Horizontal Stacking', hStack)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -191,7 +187,6 @@ def main():
     # Liberar la cámara y cerrar todas las ventanas de OpenCV al finalizar
     cap.release()
     cv2.destroyAllWindows()
-
 
 if __name__ == "__main__":
     main()
