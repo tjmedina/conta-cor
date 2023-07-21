@@ -7,5 +7,7 @@ main.py
 pic.py
 count-color.py
 
+.gitignore
+
 .vscode
 __pycache__/
