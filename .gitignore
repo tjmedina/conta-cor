@@ -1,1 +1,11 @@
 ./test
+camara.py
+colorv1.py
+colorv3.py
+main copy.py
+main.py
+pic.py
+count-color.py
+
+.vscode
+__pycache__/

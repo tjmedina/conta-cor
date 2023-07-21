@@ -7,39 +7,24 @@
   "rango_colores": {
     "RED": {
       "hue": [0, 10],
-      "saturation": [100, 255],
-      "value": [100, 255]
-    },
-    "ORANGE": {
-      "hue": [11, 25],
-      "saturation": [100, 255],
-      "value": [100, 255]
+      "saturation": [60, 255],
+      "value": [139, 255]
     },
     "YELLOW": {
-      "hue": [26, 35],
-      "saturation": [100, 255],
-      "value": [100, 255]
+      "hue": [22, 30],
+      "saturation": [58, 255],
+      "value": [226, 255]
     },
     "GREEN": {
-      "hue": [36, 80],
-      "saturation": [100, 255],
-      "value": [100, 255]
+      "hue": [31, 61],
+      "saturation": [33, 255],
+      "value": [67, 255]
     },
     "BLUE": {
-      "hue": [97, 130],
-      "saturation": [40, 255],
-      "value": [140, 255]
-    },
-    "VIOLET": {
-      "hue": [131, 160],
-      "saturation": [100, 255],
-      "value": [100, 255]
-    },
-    "PINK": {
-      "hue": [174, 184],
-      "saturation": [75, 255],
-      "value": [109, 255]
+      "hue": [73, 124],
+      "saturation": [61, 144],
+      "value": [146, 255]
     }
   },
-  "tiempo_desaparicion": 0.25
+  "tiempo_desaparicion": 1.08
 }
