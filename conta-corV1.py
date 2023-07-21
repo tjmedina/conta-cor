@@ -1,8 +1,11 @@
 import cv2
 import numpy as np
+import time
 
 
 font = cv2.FONT_HERSHEY_SIMPLEX
+
+
 
 # Función para dibujar contornos y calcular centroides dentro del ROI
 def dibujar(frame, mask, color, roi_vertices):
@@ -51,7 +54,7 @@ def main():
     configurar_rango_color()
 
     # Configuración de la cámara
-    cam = 5
+    cam = 4
     width, height = 640, 480
     fps = 60
     brightness, contrast, saturation = 55, 130, 112
@@ -84,12 +87,35 @@ def main():
     yellow_detections = []
     red_detections = []
 
+    # FPS Teste
+    start_time = time.time()
+    display_time = 10
+    fc = 0
+    p_fps = 0
+
     while True:
         ret, frame = cap.read()
+
+        
 
         # Verificar si se capturó correctamente un cuadro
         if not ret:
             break
+
+        fc+=1
+    
+        TIME = time.time() - start_time
+        
+        if (TIME) >= display_time :
+            p_fps = fc / (TIME)
+            fc = 0
+            start_time = time.time()
+        
+        fps_disp = "FPS: "+str(p_fps)[:5]
+
+        # Add contador de frames
+        frame = cv2.putText(frame, fps_disp, (15, 465),
+        font, 0.7, (0, 0, 0), 2)
 
         frameHsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
@@ -122,6 +148,8 @@ def main():
         cv2.circle(frame, (30, 32), 15, (255, 0, 0), -1)
         cv2.circle(frame, (30, 72), 15, (0, 255, 255), -1)
         cv2.circle(frame, (30, 112), 15, (0, 0, 255), -1)
+        
+
 
         # Update counters based on the number of detected objects within ROI
         blue_detected = len(centroids_azul)
@@ -152,6 +180,7 @@ def main():
         result = cv2.bitwise_and(frame, frame, mask=mask)
 
         mask = cv2.cvtColor(mask, cv2.COLOR_GRAY2BGR)
+        #hStack = np.hstack([frame])
         hStack = np.hstack([frame, mask, result])
         # cv2.imshow('Original', frame)
         # cv2.imshow('HSV Color Space', iframeHsv)
